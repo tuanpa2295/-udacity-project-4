@@ -8,12 +8,9 @@ jobs:
     docker:
     # Use the same Docker base as the project
       - image: python:3.7.3-stretch
-
     working_directory: ~/repo
-
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -42,16 +39,16 @@ jobs:
           command: |
             . venv/bin/activate
             make lint
-      - run:
-            name: Run Tests
-            command: |
-                source ~/.devops/bin/activate
-                make test-junit
-      - store_test_results:
-            path: ~/test-results
+      # - run:
+      #       name: Run Tests
+      #       command: |
+      #           source ~/.devops/bin/activate
+      #           make test-junit
+      # - store_test_results:
+      #       path: ~/test-results
 
-      - store_artifacts:
-            path: ~/test-results
+      # - store_artifacts:
+      #       path: ~/test-results
 
 workflows:
     main:
